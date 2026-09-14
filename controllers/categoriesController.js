@@ -12,6 +12,10 @@ export async function getSpecificCategory(req,res) {
     let providedId = req.params.category
     let categorydata = await getCategoryData(providedId)
     console.log(categorydata)
+    if (categorydata.length == 0){
+        res.status(404).send("404: No data found")
+    }
+    console.log(categorydata)
     res.render("specificcategory",{categorydata: categorydata})
 }
 export async function postNewCategory(req,res){
