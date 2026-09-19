@@ -9,8 +9,8 @@
     <% if (gamesArray.length == 0) { %>
         <h1>No games, maybe add one?</h1>
     <% } else { %>
-        <% gamesArray.forEach(category => { %>
-            <a href="./categories/<%=game.game_id %>"><%= game.name %></a>
+        <% gamesArray.forEach(game => { %>
+            <a href="./games/<%=game.game_id %>"><%= game.name %></a>
         <% }) %>  
     <%} %>
      <a href="./games/new">Add a game</a>

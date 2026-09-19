@@ -9,5 +9,12 @@
     <h1><%= categorydata[0].name %></h1>
     <h2><%= categorydata[0].description %></h2>
     <a href="/categories">Go back</a>
+    <h2>games:</h2>
+    <% if (gamedata.length == 0) { %>
+        <h3>No games in thsi category, add some?</h3>
+    <% } else { %>
+    <% gamedata.forEach(game => { %>
+        <a href="/games/<%=game.game_id %>"><%= game.name %></a>
+    <% })} %>
 </body>
 </html>

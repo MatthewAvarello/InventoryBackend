@@ -27,7 +27,7 @@ async function postCategory(data) {
     return
 }
 async function postGame(data) {
-    let query = `INSERT INTO games (name, category_id, hours_played, image_link, played, user_rating, description) VALUES ('${data.name}', '${data.category_id}', '${data.hours_played}', '${data.image_link}', '${data.played}', '${data.user_rating}', ${data.description}  ');`
+    let query = `INSERT INTO games (name, category_id, hours_played, image_link, played, user_rating, description) VALUES ('${data.name}', '${data.category_id}', '${data.hours_played}', '${data.image_link}', '${data.played}', '${data.user_rating}', '${data.description}');`
     console.log(query)
     let newRow = await pool.query(query)
     return
@@ -37,5 +37,9 @@ async function getAllGameData() {
     let rows = data.rows
     return rows
 }
-
-export{getAllCategoryNames,postCategory,getAllCategoryData,getCategoryData,postGame,getAllGameData}
+async function getGameByCategoryId(id) {
+    let query = `SELECT * FROM games WHERE category_id = ${id};`
+    let data = await pool.query(query)
+    return data.rows
+}
+export{getAllCategoryNames,postCategory,getAllCategoryData,getCategoryData,postGame,getAllGameData,getGameByCategoryId}

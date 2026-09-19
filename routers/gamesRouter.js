@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { getMainGamesPage, getNewGamesPage } from "../controllers/gamesController.js";
+import { getMainGamesPage, getNewGamesPage, postNewGame } from "../controllers/gamesController.js";
 
 const gamesRouter = Router()
 
 gamesRouter.get("/",getMainGamesPage)
 
-gamesRouter.get("/",getNewGamesPage)
+gamesRouter.get("/new",getNewGamesPage)
+
+gamesRouter.post("/new",postNewGame)
 
 export default gamesRouter
