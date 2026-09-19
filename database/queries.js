@@ -42,4 +42,8 @@ async function getGameByCategoryId(id) {
     let data = await pool.query(query)
     return data.rows
 }
-export{getAllCategoryNames,postCategory,getAllCategoryData,getCategoryData,postGame,getAllGameData,getGameByCategoryId}
+async function getGameData(id) {
+    let data = await pool.query(`SELECT * FROM games WHERE game_id = ${id}`)
+    return data.rows
+}
+export{getAllCategoryNames,postCategory,getAllCategoryData,getCategoryData,postGame,getAllGameData,getGameByCategoryId,getGameData}
