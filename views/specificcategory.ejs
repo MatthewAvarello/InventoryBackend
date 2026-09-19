@@ -16,5 +16,18 @@
     <% gamedata.forEach(game => { %>
         <a href="/games/<%=game.game_id %>"><%= game.name %></a>
     <% })} %>
+    <button id="deleteButton">Delete</button>
+    <script>
+        let button = document.getElementById("deleteButton").addEventListener("click", async () => {
+            let url = window.location.href
+            let response = await fetch(url,{
+                method: "DELETE"
+            })
+            if (response.ok){
+                console.log("ok")
+                window.location.href = "/categories"
+            }
+        })
+    </script>
 </body>
 </html>

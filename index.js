@@ -1,6 +1,6 @@
 import express from "express";
 import 'dotenv/config'
-import { getAllCategoryNames } from "./database/queries.js";
+import { deleteGame, getAllCategoryNames } from "./database/queries.js";
 import indexRouter from "./routers/indexRouter.js";
 import gamesRouter from "./routers/gamesRouter.js";
 import categoriesRouter from "./routers/categoriesRouter.js";
@@ -19,6 +19,8 @@ App.use("/",indexRouter)
 App.use("/games",gamesRouter)
 App.use("/categories",categoriesRouter)
 const PORT = 3000;
+
+deleteGame(2)
 
 App.listen(PORT, (error) => {
 

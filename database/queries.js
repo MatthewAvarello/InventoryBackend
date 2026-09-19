@@ -46,4 +46,11 @@ async function getGameData(id) {
     let data = await pool.query(`SELECT * FROM games WHERE game_id = ${id}`)
     return data.rows
 }
-export{getAllCategoryNames,postCategory,getAllCategoryData,getCategoryData,postGame,getAllGameData,getGameByCategoryId,getGameData}
+async function deleteGame(id) {
+    let data = await pool.query(`DELETE FROM games WHERE game_id = ${id}`)
+}
+async function deleteCategory(id) {
+    let data = await pool.query(`DELETE FROM categories WHERE category_id = ${id}`)
+    return
+}
+export{getAllCategoryNames,postCategory,getAllCategoryData,getCategoryData,postGame,getAllGameData,getGameByCategoryId,getGameData,deleteGame,deleteCategory}

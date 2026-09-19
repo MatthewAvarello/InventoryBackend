@@ -1,5 +1,5 @@
 import { getAllGameData, getGameData, postGame } from "../database/queries.js"
-
+import { deleteGame as deleteGameQuery} from "../database/queries.js"
 export async function getMainGamesPage(req,res) {
     let gamesData = await getAllGameData()
     console.log(gamesData)
@@ -19,4 +19,10 @@ export async function getSpecificGame(req,res) {
         res.status(404).send("404: No data found")
     }
     res.render("specificgame",{gamedata: gamedata})
+}
+export async function deleteGame(req,res) {
+    console.log("Sent a delete request yo!")
+    let providedId = req.params.game
+    deleteGameQuery(providedId)
+    res.status(200).json({ success: true });
 }

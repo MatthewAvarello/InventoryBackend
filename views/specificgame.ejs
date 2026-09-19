@@ -12,5 +12,18 @@
     <p><%= gamedata[0].played%></p>
     <p><%= gamedata[0].user_rating%></p>
     <img src="<%= gamedata[0].image_link %>" alt="">
+    <button id="deleteButton">Delete</button>
+    <script>
+        let button = document.getElementById("deleteButton").addEventListener("click", async () => {
+            let url = window.location.href
+            let response = await fetch(url,{
+                method: "DELETE"
+            })
+            if (response.ok){
+                console.log("ok")
+                window.location.href = "/games"
+            }
+        })
+    </script>
 </body>
 </html>
