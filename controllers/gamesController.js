@@ -1,4 +1,4 @@
-import { getAllGameData, getGameData, postGame } from "../database/queries.js"
+import { getAllGameData, getGameData, postGame, updateGameValue } from "../database/queries.js"
 import { deleteGame as deleteGameQuery} from "../database/queries.js"
 export async function getMainGamesPage(req,res) {
     let gamesData = await getAllGameData()
@@ -25,4 +25,17 @@ export async function deleteGame(req,res) {
     let providedId = req.params.game
     deleteGameQuery(providedId)
     res.status(200).json({ success: true });
+}
+export async function updateGame(req,res) {
+    let body = req.body
+    let providedId = req.params.game
+    console.log(providedId)
+    for (const key in body) {
+        let value = body[key]
+        let update = await updateGameValue(providedId,value,key)
+    }
+    res.status(200).json({ success: true });
+}
+export async function getEditGamePage(req,res) {
+    res.render("editgame")
 }

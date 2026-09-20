@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteGame, getMainGamesPage, getNewGamesPage, getSpecificGame, postNewGame } from "../controllers/gamesController.js";
+import { deleteGame, getEditGamePage, getMainGamesPage, getNewGamesPage, getSpecificGame, postNewGame, updateGame } from "../controllers/gamesController.js";
 
 const gamesRouter = Router()
 
@@ -12,5 +12,9 @@ gamesRouter.post("/new",postNewGame)
 gamesRouter.get("/:game",getSpecificGame)
 
 gamesRouter.delete("/:game",deleteGame)
+
+gamesRouter.get("/:game/edit",getEditGamePage)
+
+gamesRouter.patch("/:game/edit",updateGame)
 
 export default gamesRouter

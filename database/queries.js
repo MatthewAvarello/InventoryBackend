@@ -53,4 +53,10 @@ async function deleteCategory(id) {
     let data = await pool.query(`DELETE FROM categories WHERE category_id = ${id}`)
     return
 }
-export{getAllCategoryNames,postCategory,getAllCategoryData,getCategoryData,postGame,getAllGameData,getGameByCategoryId,getGameData,deleteGame,deleteCategory}
+async function updateGameValue(id,value,column){
+    console.log(value)
+    console.log(column)
+    let query = `UPDATE games SET ${column} = '${value}' WHERE game_id = ${id};`
+    let data = await pool.query(query)
+}
+export{getAllCategoryNames,postCategory,getAllCategoryData,getCategoryData,postGame,getAllGameData,getGameByCategoryId,getGameData,deleteGame,deleteCategory,updateGameValue}

@@ -13,6 +13,7 @@
     <p><%= gamedata[0].user_rating%></p>
     <img src="<%= gamedata[0].image_link %>" alt="">
     <button id="deleteButton">Delete</button>
+    <a href="<%= gamedata[0].game_id%>/edit"">edit</a>
     <script>
         let button = document.getElementById("deleteButton").addEventListener("click", async () => {
             let url = window.location.href
