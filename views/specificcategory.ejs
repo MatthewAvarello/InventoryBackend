@@ -15,7 +15,16 @@
         <% if (gamedata.length == 0) { %><p class="empty">No games in this category yet.</p><% } else { %>
             <div class="item-list"><% gamedata.forEach(game => { %><a class="item-link" href="/games/<%=game.game_id %>"><%= game.name %></a><% }) %></div>
         <% } %>
-        <div class="actions"><a href="/categories">Go back</a><button class="danger" id="deleteButton">Delete category</button></div>
+        <div class="actions">
+            <a href="/categories">Go back</a>
+            <a class="button" href="<%= categorydata[0].category_id %>/edit">Edit category</a>
+            <% if (categorydata[0].category_id != 1) { %>
+                <button class="danger" id="deleteButton">Delete category</button>  
+            <% } else { %>
+                <p class="red">You cannot delete the default category(There is no server side validation right now.... so just please dont, ok?)</p>
+           <% } %>
+
+        </div>
     </section></main>
     <script>
         document.getElementById("deleteButton").addEventListener("click", async () => {

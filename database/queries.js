@@ -59,4 +59,10 @@ async function updateGameValue(id,value,column){
     let query = `UPDATE games SET ${column} = '${value}' WHERE game_id = ${id};`
     let data = await pool.query(query)
 }
-export{getAllCategoryNames,postCategory,getAllCategoryData,getCategoryData,postGame,getAllGameData,getGameByCategoryId,getGameData,deleteGame,deleteCategory,updateGameValue}
+async function updateCategoryValue(id,value,column){
+    console.log(value)
+    console.log(column)
+    let query = `UPDATE categories SET ${column} = '${value}' WHERE category_id = ${id};`
+    let data = await pool.query(query)
+}
+export{getAllCategoryNames,postCategory,getAllCategoryData,getCategoryData,postGame,getAllGameData,getGameByCategoryId,getGameData,deleteGame,deleteCategory,updateGameValue,updateCategoryValue}

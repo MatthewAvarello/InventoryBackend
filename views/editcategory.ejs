@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style/styles.css">
+</head>
+<body>
+     <main class="page"><section class="form-card"><h2>Edit category</h2>
+        <div id="inputs">
+            <label for="name">Name</label><input type="text" name="name" id="name">
+            <label for="description">Description</label><input type="text" name="description" id="description">
+        </div>
+        <div class="actions"><button id="patchButton">Update category</button><a href="/categories">Cancel</a></div>
+    </section></main>
+    <script>
+        const button = document.getElementById("patchButton");
+        button.addEventListener("click", async () => {
+            const inputs = document.querySelectorAll("input");
+            const values = {};
+            for (const input of inputs) if (input.value !== "") values[input.id] = input.value;
+            const response = await fetch(window.location.href, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(values) });
+            if (response.ok) window.location.href = window.location.pathname.replace(/\/edit\/?$/, "");
+        });
+    </script>
+</body>
+</html>

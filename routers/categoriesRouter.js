@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteCategory, getMainCategoriesPage, getNewCategoryPage, getSpecificCategory, postNewCategory } from "../controllers/categoriesController.js";
+import { deleteCategory, getEditCategoryPage, getMainCategoriesPage, getNewCategoryPage, getSpecificCategory, postNewCategory, updateCategory } from "../controllers/categoriesController.js";
 
 const categoriesRouter = Router()
 
@@ -12,4 +12,8 @@ categoriesRouter.get("/:category",getSpecificCategory)
 categoriesRouter.post("/new",postNewCategory)
 
 categoriesRouter.delete("/:category",deleteCategory)
+
+categoriesRouter.get("/:category/edit", getEditCategoryPage)
+
+categoriesRouter.patch("/:category/edit",updateCategory)
 export default categoriesRouter

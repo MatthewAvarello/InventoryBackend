@@ -97,3 +97,6 @@ form button { margin-top: 1rem; justify-self: start; }
   .site-header, .page-header { align-items: flex-start; flex-direction: column; }
   .page { padding-top: 1.5rem; }
 }
+.red{
+  color: red;
+}

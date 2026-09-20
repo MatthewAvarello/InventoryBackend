@@ -1,4 +1,4 @@
-import { getAllCategoryData, getAllCategoryNames, getCategoryData, getGameByCategoryId, postCategory } from "../database/queries.js"
+import { getAllCategoryData, getAllCategoryNames, getCategoryData, getGameByCategoryId, postCategory, updateCategoryValue } from "../database/queries.js"
 import {deleteCategory as deleteCategoryQuery} from "../database/queries.js"
 export async function getMainCategoriesPage(req,res){
     let categoryData = await getAllCategoryData()
@@ -26,5 +26,18 @@ export async function postNewCategory(req,res){
 export async function deleteCategory(req,res) {
     let providedId = req.params.category
     deleteCategoryQuery(providedId)
+    res.status(200).json({ success: true });
+}
+export async function getEditCategoryPage(req,res) {
+    res.render("editcategory")
+}
+export async function updateCategory(req,res) {
+    let body = req.body
+    let providedId = req.params.category
+    console.log(providedId)
+    for (const key in body) {
+        let value = body[key]
+        let update = await updateCategoryValue(providedId,value,key)
+    }
     res.status(200).json({ success: true });
 }
