@@ -3,56 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit game | BacklogBeater</title>
+    <link rel="stylesheet" href="/style/styles.css">
 </head>
 <body>
-    <h1>e</h1>
-    <div id="inputs">
-        <label for="name">name</label>
-        <input type="text" name="name" id="name">
-        <label for="category_id">category_id</label>
-        <input type="number" name="category_id" id="category_id">
-        <label for="hours_played">hours_played</label>
-        <input type="number" name="hours_played" id="hours_played">
-        <label for="image_link">image_link</label>
-        <input type="text" name="image_link" id="image_link">
-        <label for="played">played</label>
-        <input type="text" name="played" id="played">
-        <label for="user_rating">user_rating</label>
-        <input type="number" name="user_rating" id="user_rating">
-        <label for="description">description</label>
-        <input type="text" name="description" id="description">
-    </div>
-    <button id="patchButton">update</button>
+    <header class="site-header"><h1>BacklogBeater!</h1><nav><a href="/games">Games</a><a href="/">Home</a></nav></header>
+    <main class="page"><section class="form-card"><h2>Edit game</h2>
+        <div id="inputs">
+            <label for="name">Name</label><input type="text" name="name" id="name">
+            <label for="category_id">Category ID</label><input type="number" name="category_id" id="category_id">
+            <label for="hours_played">Hours played</label><input type="number" name="hours_played" id="hours_played">
+            <label for="image_link">Image link</label><input type="text" name="image_link" id="image_link">
+            <label for="played">Played</label><input type="text" name="played" id="played">
+            <label for="user_rating">Rating</label><input type="number" name="user_rating" id="user_rating">
+            <label for="description">Description</label><input type="text" name="description" id="description">
+        </div>
+        <div class="actions"><button id="patchButton">Update game</button><a href="/games">Cancel</a></div>
+    </section></main>
     <script>
-        
-        const button = document.getElementById("patchButton")
+        const button = document.getElementById("patchButton");
         button.addEventListener("click", async () => {
-            let inputs = document.querySelectorAll('input')
-            let values = {}
-            for (let i = 0; i < inputs.length; i++) {
-                let input = inputs[i]
-                let id = input.id
-                let value = input.value
-                if (value == ""){
-                    continue
-                }
-                values[id] = value
-            }
-            console.log(values)
-            values = JSON.stringify(values)
-            let response = await fetch(window.location.href,{
-                method: "PATCH",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: values
-            })
-            if(response.ok){
-                console.log("ok")
-            }
-        })
-       
+            const inputs = document.querySelectorAll("input");
+            const values = {};
+            for (const input of inputs) if (input.value !== "") values[input.id] = input.value;
+            const response = await fetch(window.location.href, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(values) });
+            if (response.ok) window.location.href = window.location.pathname.replace(/\/edit\/?$/, "");
+        });
     </script>
 </body>
 </html>

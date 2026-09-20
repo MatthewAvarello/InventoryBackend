@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= gamedata[0].name %> | BacklogBeater</title>
+    <link rel="stylesheet" href="/style/styles.css">
 </head>
 <body>
-    <h1><%= gamedata[0].name %></h1>
-    <p><%= gamedata[0].description %></p>
-    <p><%= gamedata[0].hours_played%></p>
-    <p><%= gamedata[0].played%></p>
-    <p><%= gamedata[0].user_rating%></p>
-    <img src="<%= gamedata[0].image_link %>" alt="">
-    <button id="deleteButton">Delete</button>
-    <a href="<%= gamedata[0].game_id%>/edit"">edit</a>
+    <header class="site-header"><h1>Game details</h1><nav><a href="/">Home</a><a href="/games">Games</a></nav></header>
+    <main class="page"><section class="card">
+        <h2><%= gamedata[0].name %></h2>
+        <p><%= gamedata[0].description %></p>
+        <div class="detail-grid">
+            <p><strong>Hours played</strong><br><%= gamedata[0].hours_played %></p>
+            <p><strong>Played</strong><br><%= gamedata[0].played %></p>
+            <p><strong>Rating</strong><br><%= gamedata[0].user_rating %></p>
+        </div>
+        <img class="detail-image" src="<%= gamedata[0].image_link %>" alt="Cover art for <%= gamedata[0].name %>">
+        <div class="actions"><a class="button" href="<%= gamedata[0].game_id %>/edit">Edit game</a><a href="/games">Go back</a><button class="danger" id="deleteButton">Delete</button></div>
+    </section></main>
     <script>
-        let button = document.getElementById("deleteButton").addEventListener("click", async () => {
-            let url = window.location.href
-            let response = await fetch(url,{
-                method: "DELETE"
-            })
-            if (response.ok){
-                console.log("ok")
-                window.location.href = "/games"
-            }
-        })
+        document.getElementById("deleteButton").addEventListener("click", async () => {
+            if (!confirm("Delete this game?")) return;
+            const response = await fetch(window.location.href, { method: "DELETE" });
+            if (response.ok) window.location.href = "/games";
+        });
     </script>
 </body>
 </html>

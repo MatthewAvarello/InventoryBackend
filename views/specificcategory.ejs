@@ -3,31 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= categorydata[0].name %> | BacklogBeater</title>
+    <link rel="stylesheet" href="/style/styles.css">
 </head>
 <body>
-    <h1><%= categorydata[0].name %></h1>
-    <h2><%= categorydata[0].description %></h2>
-    <a href="/categories">Go back</a>
-    <h2>games:</h2>
-    <% if (gamedata.length == 0) { %>
-        <h3>No games in thsi category, add some?</h3>
-    <% } else { %>
-    <% gamedata.forEach(game => { %>
-        <a href="/games/<%=game.game_id %>"><%= game.name %></a>
-    <% })} %>
-    <button id="deleteButton">Delete</button>
+    <header class="site-header"><h1>Category details</h1><nav><a href="/">Home</a><a href="/categories">Categories</a></nav></header>
+    <main class="page"><section class="card">
+        <h2><%= categorydata[0].name %></h2>
+        <p><%= categorydata[0].description %></p>
+        <h3>Games</h3>
+        <% if (gamedata.length == 0) { %><p class="empty">No games in this category yet.</p><% } else { %>
+            <div class="item-list"><% gamedata.forEach(game => { %><a class="item-link" href="/games/<%=game.game_id %>"><%= game.name %></a><% }) %></div>
+        <% } %>
+        <div class="actions"><a href="/categories">Go back</a><button class="danger" id="deleteButton">Delete category</button></div>
+    </section></main>
     <script>
-        let button = document.getElementById("deleteButton").addEventListener("click", async () => {
-            let url = window.location.href
-            let response = await fetch(url,{
-                method: "DELETE"
-            })
-            if (response.ok){
-                console.log("ok")
-                window.location.href = "/categories"
-            }
-        })
+        document.getElementById("deleteButton").addEventListener("click", async () => {
+            if (!confirm("Delete this category?")) return;
+            const response = await fetch(window.location.href, { method: "DELETE" });
+            if (response.ok) window.location.href = "/categories";
+        });
     </script>
 </body>
 </html>

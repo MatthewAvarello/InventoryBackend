@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Management</title>
+    <link rel="stylesheet" href="/style/styles.css">
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <h1>BacklogBeater!</h1>
-        <div>
+        <nav aria-label="Main navigation">
             <a href="/games">Games</a>
             <a href="/categories">Categories</a>
-        </div>
+        </nav>
     </header>
+    <main class="page">
+        <section class="card">
+            <h2>Manage your game backlog</h2>
+            <p>Keep track of the games you want to play and the categories that organize them.</p>
+            <div class="actions">
+                <a class="button" href="/games">Browse games</a>
+                <a class="button" href="/categories">Browse categories</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

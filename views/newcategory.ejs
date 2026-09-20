@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>New category | BacklogBeater</title>
+    <link rel="stylesheet" href="/style/styles.css">
 </head>
 <body>
-    <form action="./new" method="post">
-        <label for="name">Name</label>
-        <input type="text" name="categoryname" id="name">
-        <label for="description">Description</label>
-        <input type="text" name="categorydescription" id="description">
-        <button type="submit">Submit yo</button>
-    </form>
+    <header class="site-header"><h1>BacklogBeater!</h1><nav><a href="/categories">Categories</a><a href="/">Home</a></nav></header>
+    <main class="page"><section class="form-card"><h2>Add a category</h2>
+        <form action="./new" method="post">
+            <label for="name">Name</label><input type="text" name="categoryname" id="name" required>
+            <label for="description">Description</label><input type="text" name="categorydescription" id="description">
+            <button type="submit">Add category</button>
+        </form>
+    </section></main>
 </body>
 </html>

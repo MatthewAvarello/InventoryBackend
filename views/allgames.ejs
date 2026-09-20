@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Games | BacklogBeater</title>
+    <link rel="stylesheet" href="/style/styles.css">
 </head>
 <body>
-    <% if (gamesArray.length == 0) { %>
-        <h1>No games, maybe add one?</h1>
-    <% } else { %>
-        <% gamesArray.forEach(game => { %>
-            <a href="./games/<%=game.game_id %>"><%= game.name %></a>
-        <% }) %>  
-    <%} %>
-     <a href="./games/new">Add a game</a>
-     <a href="/">back</a>
+    <header class="site-header"><h1>Games</h1><nav><a href="/">Home</a><a href="/categories">Categories</a></nav></header>
+    <main class="page">
+        <div class="page-header"><h2>All games</h2><a class="button" href="./games/new">Add a game</a></div>
+        <% if (gamesArray.length == 0) { %>
+            <p class="card empty">No games yet. Add one to get started.</p>
+        <% } else { %>
+            <div class="item-list">
+                <% gamesArray.forEach(game => { %>
+                    <a class="item-link" href="./games/<%=game.game_id %>"><%= game.name %></a>
+                <% }) %>
+            </div>
+        <% } %>
+    </main>
 </body>
 </html>

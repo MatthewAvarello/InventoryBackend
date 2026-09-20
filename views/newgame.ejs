@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>New game | BacklogBeater</title>
+    <link rel="stylesheet" href="/style/styles.css">
 </head>
 <body>
-    <form action="./new" method="post">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name">
-        <label for="description">Description</label>
-        <input type="text" name="description" id="description">
-        <label for="category_id">Category Id</label>
-        <input type="number" name="category_id" id="category_id">
-        <label for="hours_played">Hours Played</label>
-        <input type="text" name="hours_played" id="hours_played"> 
-        <label for="image_link">Link to Image</label>
-        <input type="text" name="image_link" id="image_link"> 
-        <label for="played">Played</label>
-        <input type="text" name="played" id="played"> 
-        <label for="user_rating">Rating</label>
-        <input type="text" name="user_rating" id="user_rating"> 
-        <button type="submit">Submit yo</button>
-        
-    </form>
+    <header class="site-header"><h1>BacklogBeater!</h1><nav><a href="/games">Games</a><a href="/">Home</a></nav></header>
+    <main class="page"><section class="form-card"><h2>Add a game</h2>
+        <form action="./new" method="post">
+            <label for="name">Name</label><input type="text" name="name" id="name" required>
+            <label for="description">Description</label><input type="text" name="description" id="description">
+            <label for="category_id">Category ID</label><input type="number" name="category_id" id="category_id">
+            <label for="hours_played">Hours played</label><input type="number" name="hours_played" id="hours_played" min="0">
+            <label for="image_link">Link to image</label><input type="url" name="image_link" id="image_link">
+            <label for="played">Played</label><input type="text" name="played" id="played">
+            <label for="user_rating">Rating</label><input type="number" name="user_rating" id="user_rating" min="0" max="10">
+            <button type="submit">Add game</button>
+        </form>
+    </section></main>
 </body>
 </html>
